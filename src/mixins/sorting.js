@@ -36,6 +36,8 @@ module.exports = {
 
                 this.array.push(number)
             }
+
+            $(".uk-list li").css('background-color', 'white')
         },
 
         /**
@@ -54,7 +56,9 @@ module.exports = {
                 this.quicksort(items, index, right)
             }
 
-            return items
+            setTimeout(() => {
+                this.sortingComplete()
+            }, 2100)
         },
 
         /**
@@ -70,6 +74,8 @@ module.exports = {
                     }
                 }
             }
+
+            this.sortingComplete()
         },
 
         /**
@@ -89,6 +95,8 @@ module.exports = {
                 this.swap(array, i, min)
                 await this.sleep()
             }
+
+            this.sortingComplete()
         },
 
         /**
@@ -109,6 +117,8 @@ module.exports = {
                 this.set(array, j, item)
                 await this.sleep()
             }
+
+            this.sortingComplete()
         },
 
         /**
@@ -142,10 +152,23 @@ module.exports = {
                     }
                 }
             }
+
+            this.sortingComplete()
         },
 
         /**
-         *
+         * Effect that finishes the sorting.
+         */
+        sortingComplete () {
+            $(".uk-list li").each((index) => {
+                ((that, i) => {
+                    var t = setTimeout(() => { $("#"+index).css('background-color', 'green'); }, 7 * i);
+                })(this, index);
+            });
+        },
+
+        /**
+         * Cuts the array in half and compares the middle value.
          */
         partition (items, left, right) {
             let pivot = items[Math.floor((right + left) / 2)]

@@ -49,6 +49,11 @@
              * Emit the new amount to the parent component.
              */
             handleChangeAmount () {
+                this.amount > 700
+                    ? this.amount = 700
+                    : this.amount < 50
+                        ? this.amount = 50
+                        : null
                 this.$emit('amount', this.amount)
             },
 
